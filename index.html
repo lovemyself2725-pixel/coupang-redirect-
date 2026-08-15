@@ -5,13 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>쿠팡 바로가기</title>
 
-<!-- 링크를 바꾸려면 아래 COUPANG_PARTNERS_LINK 한 곳과, 바로 밑 meta refresh의 url= 값만 함께 바꿔주세요 -->
+<!-- 링크를 바꾸려면 아래 COUPANG_PARTNERS_LINK 한 곳만 바꿔주세요 -->
 <script>
   var COUPANG_PARTNERS_LINK = "https://link.coupang.com/a/fY7z4swzZs";
-  location.replace(COUPANG_PARTNERS_LINK);
+  // 홈 화면에 추가된 아이콘으로 "실행"됐을 때만 자동으로 이동한다.
+  // 일반 브라우저 탭으로 열었을 때는 페이지를 그대로 두어야
+  // "홈 화면에 추가" 메뉴를 누를 시간이 생긴다.
+  var isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+  if (isStandalone) {
+    location.replace(COUPANG_PARTNERS_LINK);
+  }
 </script>
-<meta http-equiv="refresh" content="0; url=https://link.coupang.com/a/fY7z4swzZs" />
-<!-- 위 두 줄이 자바스크립트 비활성 상황을 대비한 이중 안전장치입니다 -->
 
 <link rel="manifest" href="manifest.json" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -23,7 +29,7 @@
 <style>
   html, body {
     margin: 0;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,13 +38,41 @@
     color: #fff;
     text-align: center;
   }
-  a { color: #fff; }
+  .card { padding: 32px 24px; max-width: 360px; }
+  .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: #fff;
+    color: #ee2020;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .steps {
+    margin-top: 28px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .steps b { display: block; margin-bottom: 4px; }
 </style>
 </head>
 <body>
-  <div>
-    <p>쿠팡으로 이동 중입니다…</p>
-    <p><a id="fallback-link" href="https://link.coupang.com/a/fY7z4swzZs">자동으로 이동하지 않으면 여기를 눌러주세요</a></p>
+  <div class="card">
+    <p style="font-size:18px; font-weight:700;">쿠팡 바로가기</p>
+    <a class="btn" id="fallback-link" href="https://link.coupang.com/a/fY7z4swzZs">지금 쿠팡으로 이동</a>
+
+    <div class="steps">
+      <b>📱 앱 아이콘처럼 쓰려면</b>
+      아이폰: 하단 공유 버튼(⬆️) → "홈 화면에 추가"<br />
+      안드로이드: 오른쪽 위 점 3개(⋮) → "홈 화면에 추가"
+      <br /><br />
+      추가한 뒤에는 홈 화면 아이콘을 누를 때마다 이 화면 없이 바로 쿠팡으로 이동합니다.
+    </div>
   </div>
   <script>
     document.getElementById("fallback-link").href = COUPANG_PARTNERS_LINK;
