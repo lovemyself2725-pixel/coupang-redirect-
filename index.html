@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>쿠팡 바로가기</title>
+
+<!-- 링크를 바꾸려면 아래 COUPANG_PARTNERS_LINK 한 곳과, 바로 밑 meta refresh의 url= 값만 함께 바꿔주세요 -->
+<script>
+  var COUPANG_PARTNERS_LINK = "https://link.coupang.com/a/fY7z4swzZs";
+  location.replace(COUPANG_PARTNERS_LINK);
+</script>
+<meta http-equiv="refresh" content="0; url=https://link.coupang.com/a/fY7z4swzZs" />
+<!-- 위 두 줄이 자바스크립트 비활성 상황을 대비한 이중 안전장치입니다 -->
+
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="icon" href="icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#ee2020" />
+
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ee2020;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", Roboto, sans-serif;
+    color: #fff;
+    text-align: center;
+  }
+  a { color: #fff; }
+</style>
+</head>
+<body>
+  <div>
+    <p>쿠팡으로 이동 중입니다…</p>
+    <p><a id="fallback-link" href="https://link.coupang.com/a/fY7z4swzZs">자동으로 이동하지 않으면 여기를 눌러주세요</a></p>
+  </div>
+  <script>
+    document.getElementById("fallback-link").href = COUPANG_PARTNERS_LINK;
+  </script>
+</body>
+</html>
